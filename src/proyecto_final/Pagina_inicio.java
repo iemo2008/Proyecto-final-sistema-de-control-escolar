@@ -40,3 +40,4 @@ public class Pagina_inicio extends JFrame {
 	}
 
 }
+//

@@ -54,3 +54,4 @@ public class Historial_de_cambios extends JDialog {
 	}
 
 }
+//
