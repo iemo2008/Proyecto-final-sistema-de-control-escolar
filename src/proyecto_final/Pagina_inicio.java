@@ -57,8 +57,8 @@ public class Pagina_inicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		ImageIcon imgProfesor = new ImageIcon("imgProfesor.png");
 		
+		//se crean los botones 
 		JButton btnIngresarAdministrador = new JButton("Administrador");
 		btnIngresarAdministrador.setMnemonic('a');
 		btnIngresarAdministrador.setBackground(new Color(190, 213, 235));
@@ -82,7 +82,6 @@ public class Pagina_inicio extends JFrame {
 		btnIngresarAlumno.setFont(new Font("Sitka Text", Font.BOLD, 22));
 		btnIngresarAlumno.setBounds(463, 38, 204, 272);
 		contentPane.add(btnIngresarAlumno);
-
+		
 	}
 }
-//
