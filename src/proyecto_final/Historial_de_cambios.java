@@ -20,6 +20,10 @@ public class Historial_de_cambios extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		String [] columnas = {"Accion","Profesor","Alumno","Administrador","Materia"};
+		DefaultTableModel modelo = new DefaultTableModel(columnas,0);
+		table = new JTable();
+		
 		try {
 			Historial_de_cambios dialog = new Historial_de_cambios();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -46,7 +50,7 @@ public class Historial_de_cambios extends JDialog {
 			getContentPane().add(btnVolver);
 		}
 		
-		table = new JTable();
+
 		table.setBounds(10, 36, 414, 180);
 		getContentPane().add(table);
 	}
