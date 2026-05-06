@@ -61,7 +61,7 @@ public class Calificaciones extends JDialog {
 		}
 		{
 			JButton btnNewButton = new JButton("Guardar");
-			btnNewButton.setBounds(478, 400, 175, 63);
+			btnNewButton.setBounds(478, 392, 175, 63);
 			contentPanel.add(btnNewButton);
 		}
 		

@@ -61,7 +61,7 @@ public class Asistencias extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(611, 466, 89, 52);
+		btnNewButton.setBounds(611, 481, 89, 52);
 		contentPanel.add(btnNewButton);
 		
 		textField_1 = new JTextField();
