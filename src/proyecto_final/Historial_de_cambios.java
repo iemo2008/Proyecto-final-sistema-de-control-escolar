@@ -7,16 +7,23 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Historial_de_cambios extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private JTable table;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		String [] columnas = {"Accion","Profesor","Alumno","Administrador","Materia"};
+		DefaultTableModel modelo = new DefaultTableModel(columnas,0);
+		table = new JTable();
+		
 		try {
 			Historial_de_cambios dialog = new Historial_de_cambios();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -31,27 +38,21 @@ public class Historial_de_cambios extends JDialog {
 	 */
 	public Historial_de_cambios() {
 		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().setLayout(null);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JLabel lblNewLabel = new JLabel("Administrador:");
+			lblNewLabel.setBounds(10, 11, 414, 14);
+			getContentPane().add(lblNewLabel);
 		}
-	}
+		{
+			JButton btnVolver = new JButton("Volver");
+			btnVolver.setBounds(186, 227, 89, 23);
+			getContentPane().add(btnVolver);
+		}
+		
 
+		table.setBounds(10, 36, 414, 180);
+		getContentPane().add(table);
+	}
 }
 //
