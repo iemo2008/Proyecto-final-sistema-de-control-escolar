@@ -43,7 +43,7 @@ public class Grados_y_materias extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JButton btnNewButton = new JButton("VOLVER");
-			btnNewButton.setBounds(511, 11, 170, 50);
+			btnNewButton.setBounds(504, 11, 170, 50);
 			contentPanel.add(btnNewButton);
 		}
 		
