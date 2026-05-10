@@ -9,7 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class Grados_y_materias extends JDialog {
 
@@ -23,6 +25,7 @@ public class Grados_y_materias extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Grados_y_materias dialog = new Grados_y_materias();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -38,20 +41,22 @@ public class Grados_y_materias extends JDialog {
 		setTitle("Grados y Materias");
 		setBounds(100, 100, 700, 535);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(194, 216, 237));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JButton btnNewButton = new JButton("VOLVER");
+			EstiloBoton btnNewButton = new EstiloBoton("VOLVER");
 			btnNewButton.setBounds(488, 11, 170, 50);
 			contentPanel.add(btnNewButton);
 		}
 		
-		JButton btnAsistencias = new JButton("ASISTENCIAS");
+		EstiloBoton btnAsistencias = new EstiloBoton("ASISTENCIAS");
+		btnAsistencias.setBackground(new Color(36, 62, 83));
 		btnAsistencias.setBounds(10, 11, 170, 50);
 		contentPanel.add(btnAsistencias);
 		
-		JButton btnCalificaciones = new JButton("CALIFICACIONES");
+		EstiloBoton btnCalificaciones = new EstiloBoton("CALIFICACIONES");
 		btnCalificaciones.setBounds(190, 11, 170, 50);
 		contentPanel.add(btnCalificaciones);
 		
@@ -75,6 +80,7 @@ public class Grados_y_materias extends JDialog {
 		tb_grupo_materias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tb_grupo_materias.setRowSelectionAllowed(true);
 		tb_grupo_materias.setFillsViewportHeight(true);
+					
 	}
 }
 //

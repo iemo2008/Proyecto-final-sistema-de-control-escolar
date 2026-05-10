@@ -8,8 +8,13 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalityType;
 
 public class Grados extends JDialog {
 
@@ -21,6 +26,7 @@ public class Grados extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Grados dialog = new Grados();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -33,48 +39,60 @@ public class Grados extends JDialog {
 	 * Create the dialog.
 	 */
 	public Grados() {
-		setBounds(100, 100, 622, 336);
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setBounds(100, 100, 384, 375);
 		getContentPane().setLayout(null);
 		{
 			table = new JTable();
-			table.setBounds(10, 11, 421, 227);
+			table.setBounds(10, 11, 183, 253);
 			getContentPane().add(table, BorderLayout.WEST);
 		}
 		
 		JFormattedTextField txtGrado = new JFormattedTextField();
-		txtGrado.setBounds(478, 47, 89, 20);
+		txtGrado.setBounds(213, 35, 112, 20);
 		getContentPane().add(txtGrado);
 		
 		JFormattedTextField txtGrupo = new JFormattedTextField();
-		txtGrupo.setBounds(478, 101, 89, 20);
+		txtGrupo.setBounds(213, 89, 112, 20);
 		getContentPane().add(txtGrupo);
 		
-		JButton btnIngresar = new JButton("Ingresar");
-		btnIngresar.setBounds(478, 144, 89, 23);
+		EstiloBoton btnIngresar = new EstiloBoton("Ingresar");
+		btnIngresar.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\impoticon.png"));
+		btnIngresar.setBounds(213, 130, 134, 41);
 		getContentPane().add(btnIngresar);
 		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(477, 181, 89, 23);
+		EstiloBoton btnModificar = new EstiloBoton("Modificar");
+		btnModificar.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\modificateicon.png"));
+		btnModificar.setBounds(213, 182, 134, 41);
 		getContentPane().add(btnModificar);
 		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(477, 215, 89, 23);
+		EstiloBoton btnBuscar = new EstiloBoton("Buscar");
+		btnBuscar.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\searchcaticon.png"));
+		btnBuscar.setBounds(213, 233, 134, 41);
 		getContentPane().add(btnBuscar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(477, 249, 89, 23);
+		EstiloBoton btnEliminar = new EstiloBoton("Eliminar");
+		btnEliminar.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\eliminateicon.png"));
+		btnEliminar.setBounds(213, 287, 134, 41);
 		getContentPane().add(btnEliminar);
 		
-		JButton btnVolver = new JButton("Volver");
-		btnVolver.setBounds(174, 249, 89, 23);
+		EstiloBoton btnVolver = new EstiloBoton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Seleccion_modificar VentanaSeleccion = new Seleccion_modificar();
+				VentanaSeleccion.setLocationRelativeTo(null);
+				VentanaSeleccion.setVisible(true);
+			}
+		});
+		btnVolver.setBounds(46, 287, 112, 41);
 		getContentPane().add(btnVolver);
 		
 		JLabel lblNewLabel = new JLabel("Grado:");
-		lblNewLabel.setBounds(441, 50, 46, 14);
+		lblNewLabel.setBounds(216, 11, 46, 14);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Grupo:");
-		lblNewLabel_1.setBounds(441, 104, 46, 14);
+		lblNewLabel_1.setBounds(216, 65, 46, 14);
 		getContentPane().add(lblNewLabel_1);
 	}
 }

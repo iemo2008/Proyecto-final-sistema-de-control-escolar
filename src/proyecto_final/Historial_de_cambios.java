@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class Historial_de_cambios extends JDialog {
@@ -24,6 +25,7 @@ public class Historial_de_cambios extends JDialog {
 		DefaultTableModel modelo = new DefaultTableModel(columnas,0);
 		
 		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Historial_de_cambios dialog = new Historial_de_cambios();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -44,7 +46,7 @@ public class Historial_de_cambios extends JDialog {
 			getContentPane().add(lblNewLabel);
 		}
 		{
-			JButton btnVolver = new JButton("Volver");
+			EstiloBoton btnVolver = new EstiloBoton("Volver");
 			btnVolver.setBounds(186, 227, 89, 23);
 			getContentPane().add(btnVolver);
 		}
