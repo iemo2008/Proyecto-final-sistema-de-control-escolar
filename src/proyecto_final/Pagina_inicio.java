@@ -2,6 +2,7 @@ package proyecto_final;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,11 +16,13 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 public class Pagina_inicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	int BanderaUsuario;
 
 	/**
 	 * Launch the application.
@@ -28,7 +31,7 @@ public class Pagina_inicio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					Metodos.Personalizar_frame(); 
 				    } catch (Exception e) {
 				    e.printStackTrace();
 				}
@@ -52,10 +55,10 @@ public class Pagina_inicio extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Usuario\\Downloads\\icono_sce.png"));
 		setTitle("Página inicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 691, 435);
+		setBounds(100, 100, 701, 465);
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(194, 216, 237));
-		contentPane.setBackground(new Color(190, 213, 235));
+		contentPane.setBackground(new Color(72, 72, 72));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -63,61 +66,73 @@ public class Pagina_inicio extends JFrame {
 		
 		//se crean los botones 
 		EstiloBoton btnIngresarAdministrador = new EstiloBoton("Administrador");
+		btnIngresarAdministrador.setSelectedIcon(new ImageIcon(Pagina_inicio.class.getResource("/iconos/iconadmin.png")));
 		btnIngresarAdministrador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Inicio_de_sesion inicio = new Inicio_de_sesion();
+				BanderaUsuario = 0;
+				inicio.setDato(BanderaUsuario);
 				inicio.setLocationRelativeTo(null);
 				inicio.setVisible(true);
-				
+				Pagina_inicio.this.setVisible(false);
 			}
 		});
-		btnIngresarAdministrador.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\iconadmin.png"));
-		btnIngresarAdministrador.setBackground(new Color(26, 55, 77));
+		btnIngresarAdministrador.setIcon(new ImageIcon(Pagina_inicio.class.getResource("/iconos/iconadmin.png")));
+		btnIngresarAdministrador.setBackground(new Color(5, 25, 45));
 		btnIngresarAdministrador.setMnemonic('a');
-		btnIngresarAdministrador.setForeground(new Color(194, 216, 237));
+		btnIngresarAdministrador.setForeground(new Color(202, 220, 247));
 		btnIngresarAdministrador.setFont(new Font("Sitka Text", Font.BOLD, 17));
 		btnIngresarAdministrador.setBounds(10, 110, 212, 162);
 		contentPane.add(btnIngresarAdministrador);
 		
 		EstiloBoton btnIngresarProfesor = new EstiloBoton("Administrador");
+		btnIngresarProfesor.setSelectedIcon(new ImageIcon(Pagina_inicio.class.getResource("/iconos/iconteacher.png")));
 		btnIngresarProfesor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Inicio_de_sesion inicio = new Inicio_de_sesion();
+				BanderaUsuario = 1;
+				inicio.setDato(BanderaUsuario);
 				inicio.setLocationRelativeTo(null);
 				inicio.setVisible(true);
+				Pagina_inicio.this.setVisible(false);
 			}
 		});
-		btnIngresarProfesor.setBackground(new Color(26, 55, 77));
-		btnIngresarProfesor.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\iconteacher.png"));
+		btnIngresarProfesor.setBackground(new Color(5, 25, 45));
+		btnIngresarProfesor.setIcon(new ImageIcon(Pagina_inicio.class.getResource("/iconos/iconteacher.png")));
 		btnIngresarProfesor.setText("Profesor");
 		btnIngresarProfesor.setMnemonic('a');
-		btnIngresarProfesor.setForeground(new Color(194, 216, 237));
+		btnIngresarProfesor.setForeground(new Color(202, 220, 247));
 		btnIngresarProfesor.setFont(new Font("Sitka Text", Font.BOLD, 17));
-		btnIngresarProfesor.setBounds(232, 109, 204, 162);
+		btnIngresarProfesor.setBounds(245, 110, 204, 162);
 		contentPane.add(btnIngresarProfesor);
 		
 		EstiloBoton btnIngresarAlumno = new EstiloBoton("Administrador");
 		btnIngresarAlumno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Inicio_de_sesion inicio = new Inicio_de_sesion();
+				BanderaUsuario = 2;
+				inicio.setDato(BanderaUsuario);
 				inicio.setLocationRelativeTo(null);
 				inicio.setVisible(true);
+				Pagina_inicio.this.setVisible(false);
 			}
 		});
-		btnIngresarAlumno.setBackground(new Color(26, 55, 77));
-		btnIngresarAlumno.setIcon(new ImageIcon("C:\\Users\\Usuario\\eclipse-workspace\\proyecto_final\\iconos\\iconstudent.png"));
+		btnIngresarAlumno.setBackground(new Color(5, 25, 45));
+		btnIngresarAlumno.setIcon(new ImageIcon(Pagina_inicio.class.getResource("/iconos/iconstudent.png")));
 		btnIngresarAlumno.setText("Alumno");
 		btnIngresarAlumno.setMnemonic('a');
-		btnIngresarAlumno.setForeground(new Color(194, 216, 237));
+		btnIngresarAlumno.setForeground(new Color(202, 220, 247));
 		btnIngresarAlumno.setFont(new Font("Sitka Text", Font.BOLD, 17));
-		btnIngresarAlumno.setBounds(445, 109, 204, 162);
+		btnIngresarAlumno.setBounds(473, 110, 204, 162);
 		contentPane.add(btnIngresarAlumno);
 		
 		JLabel lblNewLabel = new JLabel("SELECCIONE SU PERFIL");
-		lblNewLabel.setForeground(new Color(36, 62, 83));
+		lblNewLabel.setBackground(new Color(202, 220, 247));
+		lblNewLabel.setForeground(new Color(202, 220, 247));
 		lblNewLabel.setFont(new Font("Sitka Text", Font.PLAIN, 22));
 		lblNewLabel.setBounds(220, 54, 263, 28);
 		contentPane.add(lblNewLabel);
 		
 	}
+	
 }

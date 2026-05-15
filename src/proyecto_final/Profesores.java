@@ -7,7 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -16,6 +18,7 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
+import javax.swing.ImageIcon;
 
 public class Profesores extends JDialog {
 
@@ -29,12 +32,16 @@ public class Profesores extends JDialog {
 	private JTextField txtUsuarioProfe;
 	private JTable TablaProfesores;
 
+	
+	
+	DefaultTableModel modelo = new DefaultTableModel();
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			Metodos.Personalizar_frame();
 			Profesores dialog = new Profesores();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -49,33 +56,33 @@ public class Profesores extends JDialog {
 	public Profesores() {
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setTitle("Profesores");
-		setBounds(100, 100, 646, 446);
+		setBounds(100, 100, 1024, 531);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			txtxNombreProfe = new JTextField();
-			txtxNombreProfe.setBounds(10, 25, 206, 18);
+			txtxNombreProfe.setBounds(10, 25, 280, 18);
 			contentPanel.add(txtxNombreProfe);
 			txtxNombreProfe.setColumns(10);
 		}
 		{
 			txtApellidosProfe = new JTextField();
 			txtApellidosProfe.setColumns(10);
-			txtApellidosProfe.setBounds(10, 65, 206, 18);
+			txtApellidosProfe.setBounds(10, 65, 280, 18);
 			contentPanel.add(txtApellidosProfe);
 		}
 		{
 			txtCorreoProfe = new JTextField();
 			txtCorreoProfe.setColumns(10);
-			txtCorreoProfe.setBounds(10, 104, 206, 18);
+			txtCorreoProfe.setBounds(10, 104, 280, 18);
 			contentPanel.add(txtCorreoProfe);
 		}
 		{
 			txtClaveProfe = new JTextField();
 			txtClaveProfe.setColumns(10);
-			txtClaveProfe.setBounds(10, 143, 206, 18);
+			txtClaveProfe.setBounds(10, 143, 280, 18);
 			contentPanel.add(txtClaveProfe);
 		}
 		
@@ -83,77 +90,97 @@ public class Profesores extends JDialog {
 		cmbGrupoProfe.setBounds(10, 213, 96, 20);
 		contentPanel.add(cmbGrupoProfe);
 		
-		JButton btnOpccionesMaestro = new JButton("New button");
-		btnOpccionesMaestro.setBounds(10, 243, 112, 62);
+		EstiloBoton btnOpccionesMaestro = new EstiloBoton("Opcciones del Profesor");
+		btnOpccionesMaestro.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/iconteacher.png")));
+		btnOpccionesMaestro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnOpccionesMaestro.setBounds(10, 243, 280, 57);
 		contentPanel.add(btnOpccionesMaestro);
 		
-		JButton btnVolver = new JButton("New button");
+		EstiloBoton btnVolver = new EstiloBoton("Volver");
+		btnVolver.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/restarticon.png")));
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Profesores.this.setVisible(false);
 				Seleccion_modificar VentanaSeleccion = new Seleccion_modificar();
 				VentanaSeleccion.setLocationRelativeTo(null);
 				VentanaSeleccion.setVisible(true);
 			}
 		});
-		btnVolver.setBounds(10, 315, 112, 60);
+		btnVolver.setBounds(155, 382, 135, 61);
 		contentPanel.add(btnVolver);
 		
-		JButton btnIngresarProfe = new JButton("New button");
-		btnIngresarProfe.setBounds(132, 243, 84, 31);
+		EstiloBoton btnIngresarProfe = new EstiloBoton("Ingresar");
+		btnIngresarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/impoticon.png")));
+		btnIngresarProfe.setBounds(10, 310, 135, 61);
 		contentPanel.add(btnIngresarProfe);
 		
-		JButton btnModificarProfe = new JButton("New button");
-		btnModificarProfe.setBounds(132, 296, 84, 31);
+		EstiloBoton btnModificarProfe = new EstiloBoton("Modificar");
+		btnModificarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/modificateicon.png")));
+		btnModificarProfe.setBounds(10, 382, 135, 61);
 		contentPanel.add(btnModificarProfe);
 		
-		JButton btnEliminarProfe = new JButton("New button");
-		btnEliminarProfe.setBounds(132, 344, 84, 31);
+		EstiloBoton btnEliminarProfe = new EstiloBoton("Eliminar");
+		btnEliminarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/eliminateicon.png")));
+		btnEliminarProfe.setBounds(155, 310, 135, 61);
 		contentPanel.add(btnEliminarProfe);
 		
 		txtBuscarProfe = new JTextField();
-		txtBuscarProfe.setBounds(374, 25, 230, 18);
+		txtBuscarProfe.setBounds(446, 81, 255, 36);
 		contentPanel.add(txtBuscarProfe);
 		txtBuscarProfe.setColumns(10);
 		
-		JButton btnBuscarProfe = new JButton("New button");
-		btnBuscarProfe.setBounds(260, 24, 84, 20);
+		EstiloBoton btnBuscarProfe = new EstiloBoton("Buscar");
+		btnBuscarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/searchcaticon.png")));
+		btnBuscarProfe.setBounds(311, 75, 125, 47);
 		contentPanel.add(btnBuscarProfe);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("Nombre :");
 		lblNewLabel.setBounds(10, 10, 44, 12);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(10, 53, 44, 12);
+		JLabel lblNewLabel_1 = new JLabel("Apellidos : ");
+		lblNewLabel_1.setBounds(10, 53, 77, 12);
 		contentPanel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("Correo :");
 		lblNewLabel_2.setBounds(10, 93, 44, 12);
 		contentPanel.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(10, 132, 44, 12);
+		JLabel lblNewLabel_3 = new JLabel("Contraseña :");
+		lblNewLabel_3.setBounds(10, 132, 77, 12);
 		contentPanel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
+		JLabel lblNewLabel_4 = new JLabel("Grados");
 		lblNewLabel_4.setBounds(10, 202, 44, 12);
 		contentPanel.add(lblNewLabel_4);
 		
 		txtUsuarioProfe = new JTextField();
 		txtUsuarioProfe.setColumns(10);
-		txtUsuarioProfe.setBounds(10, 185, 206, 18);
+		txtUsuarioProfe.setBounds(10, 185, 280, 18);
 		contentPanel.add(txtUsuarioProfe);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("New label");
-		lblNewLabel_3_1.setBounds(10, 171, 44, 12);
+		JLabel lblNewLabel_3_1 = new JLabel("Usuario :");
+		lblNewLabel_3_1.setBounds(10, 171, 77, 12);
 		contentPanel.add(lblNewLabel_3_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(266, 67, 345, 303);
+		scrollPane.setBounds(300, 144, 700, 303);
 		contentPanel.add(scrollPane);
 		
-		TablaProfesores = new JTable();
-		scrollPane.setColumnHeaderView(TablaProfesores);
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Apellido");
+		modelo.addColumn("Correo");
+		modelo.addColumn("Usuario");
+		modelo.addColumn("contraaseña");
+		modelo.addColumn("Materia");
+		
+		TablaProfesores = new JTable(modelo);
+
+		
+		scrollPane.setViewportView(TablaProfesores);
 	}
 }
 //

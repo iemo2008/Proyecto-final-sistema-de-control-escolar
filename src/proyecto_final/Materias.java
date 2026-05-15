@@ -81,7 +81,7 @@ public class Materias extends JDialog {
 			EstiloBoton btnVolver = new EstiloBoton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-			
+					Materias.this.setVisible(false);
 					Seleccion_modificar VentanaSeleccion = new Seleccion_modificar();
 					VentanaSeleccion.setLocationRelativeTo(null);
 					VentanaSeleccion.setVisible(true);

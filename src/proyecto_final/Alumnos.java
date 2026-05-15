@@ -33,6 +33,7 @@ public class Alumnos extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			Metodos.Personalizar_frame();
 			Alumnos dialog = new Alumnos();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -121,6 +122,7 @@ public class Alumnos extends JDialog {
 			JButton btnVolver = new JButton("New button");
 			btnVolver.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					Alumnos.this.setVisible(false);
 					Seleccion_modificar VentanaSeleccion = new Seleccion_modificar();
 					VentanaSeleccion.setLocationRelativeTo(null);
 					VentanaSeleccion.setVisible(true);

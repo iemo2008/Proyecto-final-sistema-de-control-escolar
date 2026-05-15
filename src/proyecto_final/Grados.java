@@ -79,6 +79,7 @@ public class Grados extends JDialog {
 		EstiloBoton btnVolver = new EstiloBoton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Grados.this.setVisible(false);
 				Seleccion_modificar VentanaSeleccion = new Seleccion_modificar();
 				VentanaSeleccion.setLocationRelativeTo(null);
 				VentanaSeleccion.setVisible(true);

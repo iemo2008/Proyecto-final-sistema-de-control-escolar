@@ -12,6 +12,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Grados_y_materias extends JDialog {
 
@@ -47,6 +49,14 @@ public class Grados_y_materias extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("VOLVER");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Grados_y_materias.this.setVisible(false);
+					Pagina_inicio paginicio = new Pagina_inicio();
+					paginicio.setLocationRelativeTo(null);
+					paginicio.setVisible(true);
+				}
+			});
 			btnNewButton.setBounds(488, 11, 170, 50);
 			contentPanel.add(btnNewButton);
 		}
