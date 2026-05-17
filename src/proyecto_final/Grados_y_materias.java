@@ -27,7 +27,7 @@ public class Grados_y_materias extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			Metodos.Personalizar_frame();
 			Grados_y_materias dialog = new Grados_y_materias();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -43,7 +43,7 @@ public class Grados_y_materias extends JDialog {
 		setTitle("Grados y Materias");
 		setBounds(100, 100, 700, 535);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(194, 216, 237));
+		contentPanel.setBackground(new Color(89, 95, 102));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -62,11 +62,27 @@ public class Grados_y_materias extends JDialog {
 		}
 		
 		EstiloBoton btnAsistencias = new EstiloBoton("ASISTENCIAS");
+		btnAsistencias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Asistencias Asistencias_profesor = new Asistencias();
+				Asistencias_profesor.setLocationRelativeTo(null);
+				Asistencias_profesor.setVisible(true);
+				Grados_y_materias.this.setVisible(false);
+			}
+		});
 		btnAsistencias.setBackground(new Color(36, 62, 83));
 		btnAsistencias.setBounds(10, 11, 170, 50);
 		contentPanel.add(btnAsistencias);
 		
 		EstiloBoton btnCalificaciones = new EstiloBoton("CALIFICACIONES");
+		btnCalificaciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Calificaciones calificaciones_profesor = new Calificaciones();
+				calificaciones_profesor.setLocationRelativeTo(null);
+				calificaciones_profesor.setVisible(true);
+				Grados_y_materias.this.setVisible(false);
+			}
+		});
 		btnCalificaciones.setBounds(190, 11, 170, 50);
 		contentPanel.add(btnCalificaciones);
 		

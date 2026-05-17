@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
 import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.ImageIcon;
 
 public class Administradores extends JDialog {
 
@@ -57,24 +58,24 @@ public class Administradores extends JDialog {
 	public Administradores() {
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setTitle("Administradores");
-		setBounds(100, 100, 715, 469);
+		setBounds(100, 100, 880, 556);
 		getContentPane().setLayout(null);
 		{
 			txtxNombreAdmin = new JTextField();
-			txtxNombreAdmin.setBounds(10, 22, 228, 18);
+			txtxNombreAdmin.setBounds(10, 32, 228, 18);
 			getContentPane().add(txtxNombreAdmin);
 			txtxNombreAdmin.setColumns(10);
 		}
 		{
 			txtxApellidosAdmin = new JTextField();
 			txtxApellidosAdmin.setColumns(10);
-			txtxApellidosAdmin.setBounds(10, 66, 228, 18);
+			txtxApellidosAdmin.setBounds(10, 77, 228, 18);
 			getContentPane().add(txtxApellidosAdmin);
 		}
 		{
 			txtCorreoAdmin = new JTextField();
 			txtCorreoAdmin.setColumns(10);
-			txtCorreoAdmin.setBounds(10, 118, 228, 18);
+			txtCorreoAdmin.setBounds(10, 126, 228, 18);
 			getContentPane().add(txtCorreoAdmin);
 		}
 		{
@@ -95,12 +96,12 @@ public class Administradores extends JDialog {
 		getContentPane().add(lblNewLabel);
 		{
 			lblNewLabel_1 = new JLabel("Correo");
-			lblNewLabel_1.setBounds(10, 107, 44, 12);
+			lblNewLabel_1.setBounds(10, 105, 44, 12);
 			getContentPane().add(lblNewLabel_1);
 		}
 		{
 			lblNewLabel_2 = new JLabel("Clave");
-			lblNewLabel_2.setBounds(10, 158, 44, 12);
+			lblNewLabel_2.setBounds(10, 147, 44, 12);
 			getContentPane().add(lblNewLabel_2);
 		}
 		{
@@ -110,27 +111,35 @@ public class Administradores extends JDialog {
 		}
 		{
 			lblNewLabel_4 = new JLabel("Apellidos");
-			lblNewLabel_4.setBounds(10, 55, 44, 12);
+			lblNewLabel_4.setBounds(10, 55, 59, 12);
 			getContentPane().add(lblNewLabel_4);
 		}
 		
-		JButton btnCambiosAdmin = new JButton("New button");
-		btnCambiosAdmin.setBounds(10, 286, 100, 73);
-		getContentPane().add(btnCambiosAdmin);
-		
-		JButton btnIngresarAdmin = new JButton("New button");
-		btnIngresarAdmin.setBounds(120, 264, 118, 29);
+		EstiloBoton btnIngresarAdmin = new EstiloBoton("Ingresar");
+		btnIngresarAdmin.setIcon(new ImageIcon(Administradores.class.getResource("/iconos/impoticon.png")));
+		btnIngresarAdmin.setBounds(10, 274, 228, 54);
 		getContentPane().add(btnIngresarAdmin);
 		
-		JButton btnModificarAdmin = new JButton("New button");
-		btnModificarAdmin.setBounds(120, 308, 118, 29);
+		EstiloBoton btnModificarAdmin = new EstiloBoton("Modificar");
+		btnModificarAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnModificarAdmin.setIcon(new ImageIcon(Administradores.class.getResource("/iconos/modificateicon.png")));
+		btnModificarAdmin.setBounds(10, 420, 228, 54);
 		getContentPane().add(btnModificarAdmin);
 		
-		JButton EliminarAdmin = new JButton("New button");
-		EliminarAdmin.setBounds(120, 389, 118, 29);
+		EstiloBoton EliminarAdmin = new EstiloBoton("Eliminar");
+		EliminarAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		EliminarAdmin.setIcon(new ImageIcon(Administradores.class.getResource("/iconos/eliminateicon.png")));
+		EliminarAdmin.setBounds(10, 349, 228, 54);
 		getContentPane().add(EliminarAdmin);
 		
-		JButton btnVolver = new JButton("New button");
+		EstiloBoton btnVolver = new EstiloBoton("Volver");
+		btnVolver.setIcon(new ImageIcon(Administradores.class.getResource("/iconos/restarticon.png")));
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Administradores.this.setVisible(false);
@@ -140,21 +149,26 @@ public class Administradores extends JDialog {
 				
 			}
 		});
-		btnVolver.setBounds(10, 384, 100, 38);
+		btnVolver.setBounds(718, 14, 138, 42);
 		getContentPane().add(btnVolver);
 		
 		txtxBuscarAdmin = new JTextField();
-		txtxBuscarAdmin.setBounds(386, 22, 271, 18);
+		txtxBuscarAdmin.setBounds(426, 71, 430, 32);
 		getContentPane().add(txtxBuscarAdmin);
 		txtxBuscarAdmin.setColumns(10);
 		{
-			btnBuscarAdmin = new JButton("New button");
-			btnBuscarAdmin.setBounds(285, 21, 84, 20);
+			btnBuscarAdmin = new EstiloBoton("Buscar");
+			btnBuscarAdmin.setIcon(new ImageIcon(Administradores.class.getResource("/iconos/searchcaticon.png")));
+			btnBuscarAdmin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			btnBuscarAdmin.setBounds(261, 58, 147, 57);
 			getContentPane().add(btnBuscarAdmin);
 		}
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(291, 67, 376, 305);
+		scrollPane.setBounds(248, 127, 608, 347);
 		getContentPane().add(scrollPane);
 		{
 			tablaAdmin = new JTable();

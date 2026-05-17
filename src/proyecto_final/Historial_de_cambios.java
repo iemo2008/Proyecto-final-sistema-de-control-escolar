@@ -25,7 +25,7 @@ public class Historial_de_cambios extends JDialog {
 		DefaultTableModel modelo = new DefaultTableModel(columnas,0);
 		
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			Metodos.Personalizar_frame();
 			Historial_de_cambios dialog = new Historial_de_cambios();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);

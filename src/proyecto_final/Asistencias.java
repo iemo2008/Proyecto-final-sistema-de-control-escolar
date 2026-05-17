@@ -12,15 +12,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Asistencias extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtProfesor;
+	private JTextField txtMateria;
+	private JTextField txtBuscar;
 
 	/**
 	 * Launch the application.
@@ -45,51 +45,68 @@ public class Asistencias extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		{
-			textField = new JTextField();
-			textField.setBounds(10, 11, 440, 42);
-			contentPanel.add(textField);
-			textField.setColumns(10);
-		}
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 64, 690, 376);
+		scrollPane.setBounds(20, 143, 496, 376);
 		contentPanel.add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Volver");
+		btnNewButton.setIcon(new ImageIcon(Asistencias.class.getResource("/iconos/restarticon.png")));
 		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Grados_y_materias ventana_profesor = new Grados_y_materias();
+				ventana_profesor.setLocationRelativeTo(null);
+				ventana_profesor.setVisible(true);
+				Asistencias.this.setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(543, 460, 159, 59);
+		contentPanel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Guardar");
+		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(611, 481, 89, 52);
-		contentPanel.add(btnNewButton);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 451, 151, 20);
-		contentPanel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(10, 482, 151, 20);
-		contentPanel.add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(10, 513, 151, 20);
-		contentPanel.add(textField_3);
-		textField_3.setColumns(10);
-		
-		JButton btnNewButton_1 = new JButton("Guardar");
-		btnNewButton_1.setBounds(186, 466, 113, 52);
+		btnNewButton_1.setBounds(543, 379, 159, 59);
 		contentPanel.add(btnNewButton_1);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 10, 496, 59);
+		contentPanel.add(panel);
+		panel.setLayout(null);
+		
 		JLabel lblNewLabel_1 = new JLabel("Profesor");
-		lblNewLabel_1.setBounds(463, 11, 206, 27);
-		contentPanel.add(lblNewLabel_1);
+		lblNewLabel_1.setBounds(10, 5, 62, 13);
+		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Materia");
-		lblNewLabel_1_1.setBounds(460, 37, 206, 27);
-		contentPanel.add(lblNewLabel_1_1);
+		lblNewLabel_1_1.setBounds(10, 36, 62, 13);
+		panel.add(lblNewLabel_1_1);
+		
+		txtProfesor = new JTextField();
+		txtProfesor.setBounds(80, 2, 345, 18);
+		panel.add(txtProfesor);
+		txtProfesor.setColumns(10);
+		
+		txtMateria = new JTextField();
+		txtMateria.setColumns(10);
+		txtMateria.setBounds(80, 33, 345, 18);
+		panel.add(txtMateria);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(526, 148, 182, 100);
+		contentPanel.add(panel_1);
+		
+		txtBuscar = new JTextField();
+		txtBuscar.setBounds(145, 94, 371, 29);
+		contentPanel.add(txtBuscar);
+		txtBuscar.setColumns(10);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setIcon(new ImageIcon(Asistencias.class.getResource("/iconos/searchcaticon.png")));
+		btnBuscar.setBounds(10, 83, 125, 50);
+		contentPanel.add(btnBuscar);
 	}
 }
 //

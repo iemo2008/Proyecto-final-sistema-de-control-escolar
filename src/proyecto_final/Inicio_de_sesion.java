@@ -17,8 +17,8 @@ public class Inicio_de_sesion extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtUsuario;
+	private JTextField txtContrasena;
 	int BanderaUsuario;
 	
 	/**
@@ -26,6 +26,7 @@ public class Inicio_de_sesion extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			Metodos.Personalizar_frame(); 
 			Inicio_de_sesion dialog = new Inicio_de_sesion();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -107,22 +108,22 @@ public class Inicio_de_sesion extends JDialog {
 		btnNewButton.setBounds(161, 148, 106, 48);
 		contentPanel.add(btnNewButton);
 		
-		textField = new JTextField();
-		textField.setBounds(141, 58, 144, 18);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(141, 58, 144, 18);
+		contentPanel.add(txtUsuario);
+		txtUsuario.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(141, 105, 144, 18);
-		contentPanel.add(textField_1);
+		txtContrasena = new JTextField();
+		txtContrasena.setColumns(10);
+		txtContrasena.setBounds(141, 105, 144, 18);
+		contentPanel.add(txtContrasena);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(194, 36, 44, 12);
-		contentPanel.add(lblNewLabel);
+		JLabel usuario = new JLabel("Usuario");
+		usuario.setBounds(194, 36, 44, 12);
+		contentPanel.add(usuario);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(194, 86, 44, 12);
+		JLabel lblNewLabel_1 = new JLabel("contraseña");
+		lblNewLabel_1.setBounds(194, 86, 73, 12);
 		contentPanel.add(lblNewLabel_1);
 	}
 }
