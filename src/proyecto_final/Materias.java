@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -18,12 +19,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 public class Materias extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTable table;
-
+	private JFormattedTextField txtNombre; 
+    private DefaultTableModel modeloMaterias;
+    private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -71,11 +74,14 @@ public class Materias extends JDialog {
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		getContentPane().add(scroll, BorderLayout.CENTER);
 		{
+<<<<<<< HEAD
 			table = new JTable();
 			JScrollPane scrollPane = new JScrollPane(table);
 			panelDerecho.add(scrollPane, BorderLayout.CENTER);
 		}
 		{
+=======
+>>>>>>> branch 'master' of https://github.com/iemo2008/Proyecto-final-sistema-de-control-escolar.git
 			JLabel lblNewLabel = new JLabel("Nombre:");
 			panelFormulario.add(lblNewLabel);
 		}
@@ -84,6 +90,7 @@ public class Materias extends JDialog {
 			btnEliminar.setIcon(new ImageIcon(Materias.class.getResource("/iconos/eliminateicon.png")));
 			btnEliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					eliminarMateria();
 				}
 			});
 			
@@ -109,6 +116,11 @@ public class Materias extends JDialog {
 		}
 		{
 			EstiloBoton btnIngresar = new EstiloBoton("Ingresar");
+			btnIngresar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ingresarMateria();
+				}
+			});
 			btnIngresar.setIcon(new ImageIcon(Materias.class.getResource("/iconos/impoticon.png")));
 			panelFormulario.add(btnIngresar);
 		}
@@ -130,6 +142,59 @@ public class Materias extends JDialog {
 			JFormattedTextField txtBuscarMateria = new JFormattedTextField();
 			panelBusqueda.add(txtBuscarMateria, BorderLayout.CENTER);
 		}
+		{
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(199, 130, 416, 179);
+			getContentPane().add(scrollPane);
+			{
+				table = new JTable();
+				scrollPane.setViewportView(table);
+			}
+		}
+		
+		modeloMaterias = new DefaultTableModel();
+		modeloMaterias.addColumn("ID");
+		modeloMaterias.addColumn("Nombre Materia");
+		table.setModel(modeloMaterias);
+
+		mostrarMaterias();
+	}
+	
+	public void mostrarMaterias() {
+	    modeloMaterias.setRowCount(0);
+	    try (java.sql.Connection con = Conexion.conectar()) {
+	        String sql = "SELECT id, nombre FROM materia WHERE activo = 1";
+	        java.sql.Statement st = con.createStatement();
+	        java.sql.ResultSet rs = st.executeQuery(sql);
+	        while (rs.next()) {
+	            modeloMaterias.addRow(new Object[]{rs.getInt("id"), rs.getString("nombre")});
+	        }
+	    } catch (Exception e) { e.printStackTrace(); }
+	}
+
+	private void ingresarMateria() {
+	    String nombre = txtNombre.getText();
+	    if (nombre.isEmpty()) return;
+	    try (java.sql.Connection con = Conexion.conectar()) {
+	        java.sql.PreparedStatement pst = con.prepareStatement("INSERT INTO materia (nombre, activo) VALUES (?, 1)");
+	        pst.setString(1, nombre);
+	        pst.executeUpdate();
+	        txtNombre.setText("");
+	        mostrarMaterias();
+	        javax.swing.JOptionPane.showMessageDialog(null, "Materia agregada");
+	    } catch (Exception e) { e.printStackTrace(); }
+	}
+
+	private void eliminarMateria() {
+	    int fila = table.getSelectedRow();
+	    if (fila == -1) return;
+	    String id = table.getValueAt(fila, 0).toString();
+	    try (java.sql.Connection con = Conexion.conectar()) {
+	        java.sql.PreparedStatement pst = con.prepareStatement("UPDATE materia SET activo = 0 WHERE id = ?");
+	        pst.setString(1, id);
+	        pst.executeUpdate();
+	        mostrarMaterias();
+	    } catch (Exception e) { e.printStackTrace(); }
 	}
 
 }
