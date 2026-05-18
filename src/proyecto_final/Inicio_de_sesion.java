@@ -1,11 +1,14 @@
 package proyecto_final;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
-
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dialog.ModalityType;
 import javax.swing.JTextField;
@@ -45,86 +48,91 @@ public class Inicio_de_sesion extends JDialog {
 	 * Create the dialog.
 	 */
 	public Inicio_de_sesion() {
-		setResizable(false);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 450, 328);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
-		{
-			EstiloBoton btnNewButton = new EstiloBoton("Ingresar");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					//de acuerdo al usuario que entre se buscará su usuario y contraseña en la base de datos 
-				if(BanderaUsuario == 0)
-			    {
-					Inicio_de_sesion.this.setVisible(false);
-			        Seleccion_modificar inicioAdmin = new Seleccion_modificar();
-			        inicioAdmin.setLocationRelativeTo(null);
-			        inicioAdmin.setVisible(true);
-			    }
-			    else
-			    {
-			       if(BanderaUsuario == 1)
-			       {
-			    	   	Inicio_de_sesion.this.setVisible(false);
-				        Grados_y_materias inicioprofe = new Grados_y_materias();
-				        inicioprofe.setLocationRelativeTo(null);
-				        inicioprofe.setVisible(true);	
-			       }
-			       else
-			       {
-			            if(BanderaUsuario == 2)
-			            {
-			            	Inicio_de_sesion.this.setVisible(false);
-			            	Consulta_Calificaciones inicioAlumnos = new Consulta_Calificaciones();
-			            	inicioAlumnos.setLocationRelativeTo(null);
-			            	inicioAlumnos.setVisible(true);
-			        	}
-			            else
-			        		{
-			        			
-			        		}
-			        	}
-			        }
-					
-				}
-			});
-			btnNewButton.setBounds(161, 206, 106, 48);
-			contentPanel.add(btnNewButton);
-		}
+		contentPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		setLocationRelativeTo(null);
 		
-		EstiloBoton btnNewButton = new EstiloBoton("Volver");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Inicio_de_sesion.this.setVisible(false);
-				Pagina_inicio paginicio = new Pagina_inicio();
-				paginicio.setLocationRelativeTo(null);
-				paginicio.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(161, 148, 106, 48);
-		contentPanel.add(btnNewButton);
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.setPreferredSize(new Dimension(410, 320));
+		
+		JPanel panelContenido = new JPanel(new GridLayout(6, 1, 0, 15)); 
+		panel.add(panelContenido, BorderLayout.CENTER);
+
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(panel);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(scroll, BorderLayout.CENTER);
+		
+		JLabel usuario = new JLabel("Usuario", SwingConstants.CENTER);
+		panelContenido.add(usuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(141, 58, 144, 18);
-		contentPanel.add(txtUsuario);
+		panelContenido.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		txtContrasena = new JTextField();
-		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(141, 105, 144, 18);
-		contentPanel.add(txtContrasena);
+		JLabel lblNewLabel_1 = new JLabel("contraseña", SwingConstants.CENTER);
+		panelContenido.add(lblNewLabel_1);
 		
-		JLabel usuario = new JLabel("Usuario");
-		usuario.setBounds(194, 36, 44, 12);
-		contentPanel.add(usuario);
 		
-		JLabel lblNewLabel_1 = new JLabel("contraseña");
-		lblNewLabel_1.setBounds(194, 86, 73, 12);
-		contentPanel.add(lblNewLabel_1);
+				{
+					EstiloBoton btnNewButton_1 = new EstiloBoton("Ingresar");
+					btnNewButton_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							//de acuerdo al usuario que entre se buscará su usuario y contraseña en la base de datos 
+						if(BanderaUsuario == 0)
+					    {
+							Inicio_de_sesion.this.setVisible(false);
+					        Seleccion_modificar inicioAdmin = new Seleccion_modificar();
+					        inicioAdmin.setLocationRelativeTo(null);
+					        inicioAdmin.setVisible(true);
+					    }
+					    else
+					    {
+					       if(BanderaUsuario == 1)
+					       {
+					    	   	Inicio_de_sesion.this.setVisible(false);
+						        Grados_y_materias inicioprofe = new Grados_y_materias();
+						        inicioprofe.setLocationRelativeTo(null);
+						        inicioprofe.setVisible(true);	
+					       }
+					       else
+					       {
+					            if(BanderaUsuario == 2)
+					            {
+					            	Inicio_de_sesion.this.setVisible(false);
+					            	Consulta_Calificaciones inicioAlumnos = new Consulta_Calificaciones();
+					            	inicioAlumnos.setLocationRelativeTo(null);
+					            	inicioAlumnos.setVisible(true);
+					        	}
+					            else
+					        		{
+					        			
+					        		}
+					        	}
+					        }
+							
+						}
+					});
+					
+					txtContrasena = new JTextField();
+					txtContrasena.setColumns(10);
+					panelContenido.add(txtContrasena);
+					
+					EstiloBoton btnNewButton = new EstiloBoton("Volver");
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Inicio_de_sesion.this.setVisible(false);
+							Pagina_inicio paginicio = new Pagina_inicio();
+							paginicio.setLocationRelativeTo(null);
+							paginicio.setVisible(true);
+						}
+					});
+					panelContenido.add(btnNewButton);
+					panelContenido.add(btnNewButton_1);
+				}
 	}
 }
 

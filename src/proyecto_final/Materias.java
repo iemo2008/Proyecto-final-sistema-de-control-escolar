@@ -1,11 +1,14 @@
 package proyecto_final;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
@@ -42,21 +45,39 @@ public class Materias extends JDialog {
 		setModal(true);
 		setModalityType(ModalityType.TOOLKIT_MODAL);
 		setBounds(100, 100, 652, 371);
-		getContentPane().setLayout(null);
-		{
-			JFormattedTextField txtNombre = new JFormattedTextField();
-			txtNombre.setBounds(10, 61, 161, 20);
-			getContentPane().add(txtNombre);
-		}
+		setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.setPreferredSize(new Dimension(590, 430));
+		
+		JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		panel.add(panelSuperior, BorderLayout.NORTH);
+
+		JPanel panelContenido = new JPanel(new GridLayout(1, 2, 20, 0)); 
+		panel.add(panelContenido, BorderLayout.CENTER);
+		
+		JPanel panelFormulario = new JPanel(new GridLayout(7, 1, 5, 15));
+		panelContenido.add(panelFormulario);
+		
+		JPanel panelDerecho = new JPanel(new BorderLayout(0, 10));
+		panelContenido.add(panelDerecho);
+
+		JPanel panelBusqueda = new JPanel(new BorderLayout(5, 0));
+		panelBusqueda.setBorder(new EmptyBorder(15, 0, 15, 0));
+		panelDerecho.add(panelBusqueda, BorderLayout.NORTH);
+
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(panel);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(scroll, BorderLayout.CENTER);
 		{
 			table = new JTable();
-			table.setBounds(200, 124, 415, 185);
-			getContentPane().add(table);
+			JScrollPane scrollPane = new JScrollPane(table);
+			panelDerecho.add(scrollPane, BorderLayout.CENTER);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("Nombre:");
-			lblNewLabel.setBounds(10, 37, 49, 14);
-			getContentPane().add(lblNewLabel);
+			panelFormulario.add(lblNewLabel);
 		}
 		{
 			EstiloBoton btnEliminar = new EstiloBoton("Eliminar");
@@ -65,8 +86,12 @@ public class Materias extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnEliminar.setBounds(10, 248, 161, 61);
-			getContentPane().add(btnEliminar);
+			
+			{
+				JFormattedTextField txtNombre = new JFormattedTextField();
+				panelFormulario.add(txtNombre);
+			}
+			panelFormulario.add(btnEliminar);
 		}
 		{
 			EstiloBoton btnBuscarMateria = new EstiloBoton("Buscar");
@@ -75,20 +100,17 @@ public class Materias extends JDialog {
 				}
 			});
 			btnBuscarMateria.setIcon(new ImageIcon(Materias.class.getResource("/iconos/searchcaticon.png")));
-			btnBuscarMateria.setBounds(200, 61, 125, 53);
-			getContentPane().add(btnBuscarMateria);
+			panelBusqueda.add(btnBuscarMateria, BorderLayout.WEST);
 		}
 		{
 			EstiloBoton btnModificar = new EstiloBoton("Modificar");
 			btnModificar.setIcon(new ImageIcon(Materias.class.getResource("/iconos/modificateicon.png")));
-			btnModificar.setBounds(10, 174, 161, 64);
-			getContentPane().add(btnModificar);
+			panelFormulario.add(btnModificar);
 		}
 		{
 			EstiloBoton btnIngresar = new EstiloBoton("Ingresar");
 			btnIngresar.setIcon(new ImageIcon(Materias.class.getResource("/iconos/impoticon.png")));
-			btnIngresar.setBounds(10, 107, 161, 61);
-			getContentPane().add(btnIngresar);
+			panelFormulario.add(btnIngresar);
 		}
 		{
 			EstiloBoton btnVolver = new EstiloBoton("Volver");
@@ -101,13 +123,12 @@ public class Materias extends JDialog {
 					VentanaSeleccion.setVisible(true);
 				}
 			});
-			btnVolver.setBounds(502, 5, 113, 46);
-			getContentPane().add(btnVolver);
+			btnVolver.setPreferredSize(new Dimension(130, 40));
+			panelSuperior.add(btnVolver);
 		}
 		{
 			JFormattedTextField txtBuscarMateria = new JFormattedTextField();
-			txtBuscarMateria.setBounds(347, 73, 268, 34);
-			getContentPane().add(txtBuscarMateria);
+			panelBusqueda.add(txtBuscarMateria, BorderLayout.CENTER);
 		}
 	}
 

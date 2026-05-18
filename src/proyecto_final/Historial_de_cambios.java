@@ -1,11 +1,14 @@
 package proyecto_final;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -39,21 +42,40 @@ public class Historial_de_cambios extends JDialog {
 	 */
 	public Historial_de_cambios() {
 		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.setPreferredSize(new Dimension(490, 300));
+		
+		JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panel.add(panelSuperior, BorderLayout.NORTH);
+
+		JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
+		panel.add(panelContenido, BorderLayout.CENTER);
+
+		JPanel pnl_abajo = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
+		panel.add(pnl_abajo, BorderLayout.SOUTH);
+		
+		pnl_abajo.setBorder(new EmptyBorder(15, 0, 0, 0));
+
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(panel);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(scroll, BorderLayout.CENTER);
+		
 		{
 			JLabel lblNewLabel = new JLabel("Administrador:");
-			lblNewLabel.setBounds(10, 11, 414, 14);
-			getContentPane().add(lblNewLabel);
+			panelSuperior.add(lblNewLabel);
 		}
 		{
 			EstiloBoton btnVolver = new EstiloBoton("Volver");
-			btnVolver.setBounds(186, 227, 89, 23);
-			getContentPane().add(btnVolver);
+			pnl_abajo.add(btnVolver);
 		}
 		
-		table = new JTable();
-		table.setBounds(10, 36, 414, 180);
-		getContentPane().add(table);
+		JTable table = new JTable();
+		JScrollPane scrollPane = new JScrollPane(table);
+		panelContenido.add(scrollPane, BorderLayout.CENTER);
+
 	}
 }
 //

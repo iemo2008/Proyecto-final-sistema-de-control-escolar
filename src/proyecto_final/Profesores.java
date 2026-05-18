@@ -1,7 +1,9 @@
 package proyecto_final;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -23,7 +25,7 @@ import javax.swing.ImageIcon;
 public class Profesores extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel = new JPanel(new BorderLayout());
 	private JTextField txtxNombreProfe;
 	private JTextField txtApellidosProfe;
 	private JTextField txtCorreoProfe;
@@ -59,36 +61,78 @@ public class Profesores extends JDialog {
 		setBounds(100, 100, 1024, 576);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		setLocationRelativeTo(null);
+
+		contentPanel.setPreferredSize(new Dimension(490, 330));
+		
+		JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		contentPanel.add(panelSuperior, BorderLayout.NORTH);
+
+		JPanel panelContenido = new JPanel(new GridLayout(1, 2, 20, 0)); 
+		contentPanel.add(panelContenido, BorderLayout.CENTER);
+		
+		JPanel panelFormulario = new JPanel(new GridLayout(10, 4, 5, 15));
+		panelContenido.add(panelFormulario);
+		
+		JPanel panelDerecho = new JPanel(new BorderLayout(0, 10));
+		panelContenido.add(panelDerecho);
+
+		JPanel panelBusqueda = new JPanel(new BorderLayout(5, 0));
+		panelBusqueda.setBorder(new EmptyBorder(15, 0, 15, 0));
+		panelDerecho.add(panelBusqueda, BorderLayout.NORTH);
+
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(contentPanel);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(scroll, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("Nombre :");
+		panelFormulario.add(lblNewLabel);
+		
+		
+		
 		{
 			txtxNombreProfe = new JTextField();
-			txtxNombreProfe.setBounds(10, 25, 232, 18);
-			contentPanel.add(txtxNombreProfe);
+			panelFormulario.add(txtxNombreProfe);
 			txtxNombreProfe.setColumns(10);
 		}
+		
+		JLabel lblNewLabel_1 = new JLabel("Apellidos : ");
+		panelFormulario.add(lblNewLabel_1);
 		{
 			txtApellidosProfe = new JTextField();
 			txtApellidosProfe.setColumns(10);
-			txtApellidosProfe.setBounds(10, 65, 232, 18);
-			contentPanel.add(txtApellidosProfe);
+			panelFormulario.add(txtApellidosProfe);
 		}
+		
+		JLabel lblNewLabel_2 = new JLabel("Correo :");
+		panelFormulario.add(lblNewLabel_2);
 		{
 			txtCorreoProfe = new JTextField();
 			txtCorreoProfe.setColumns(10);
-			txtCorreoProfe.setBounds(10, 104, 232, 18);
-			contentPanel.add(txtCorreoProfe);
+			panelFormulario.add(txtCorreoProfe);
 		}
+		
+		JLabel lblNewLabel_3 = new JLabel("Contraseña :");
+		panelFormulario.add(lblNewLabel_3);
 		{
 			txtClaveProfe = new JTextField();
 			txtClaveProfe.setColumns(10);
-			txtClaveProfe.setBounds(10, 143, 232, 18);
-			contentPanel.add(txtClaveProfe);
+			panelFormulario.add(txtClaveProfe);
 		}
 		
+		JLabel lblNewLabel_3_1 = new JLabel("Usuario :");
+		panelFormulario.add(lblNewLabel_3_1);
+		
+		txtUsuarioProfe = new JTextField();
+		txtUsuarioProfe.setColumns(10);
+		panelFormulario.add(txtUsuarioProfe);
+		
+		JLabel lblNewLabel_4 = new JLabel("Grados");
+		panelFormulario.add(lblNewLabel_4);
+		
 		JComboBox cmbGrupoProfe = new JComboBox();
-		cmbGrupoProfe.setBounds(10, 213, 96, 20);
-		contentPanel.add(cmbGrupoProfe);
+		panelFormulario.add(cmbGrupoProfe);
 		
 		EstiloBoton btnOpccionesMaestro = new EstiloBoton("Opcciones del Profesor");
 		btnOpccionesMaestro.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/iconteacher.png")));
@@ -100,8 +144,8 @@ public class Profesores extends JDialog {
 				Profesores.this.setVisible(false);
 			}
 		});
-		btnOpccionesMaestro.setBounds(10, 243, 232, 57);
-		contentPanel.add(btnOpccionesMaestro);
+		btnOpccionesMaestro.setPreferredSize(new Dimension(120, 65));
+		panelFormulario.add(btnOpccionesMaestro);
 		
 		EstiloBoton btnVolver = new EstiloBoton("Volver");
 		btnVolver.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/restarticon.png")));
@@ -113,13 +157,13 @@ public class Profesores extends JDialog {
 				VentanaSeleccion.setVisible(true);
 			}
 		});
-		btnVolver.setBounds(833, 4, 135, 47);
-		contentPanel.add(btnVolver);
+		btnVolver.setPreferredSize(new Dimension(120, 40));
+		panelSuperior.add(btnVolver);
 		
 		EstiloBoton btnIngresarProfe = new EstiloBoton("Ingresar");
 		btnIngresarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/impoticon.png")));
-		btnIngresarProfe.setBounds(10, 310, 232, 61);
-		contentPanel.add(btnIngresarProfe);
+		btnIngresarProfe.setPreferredSize(new Dimension(120, 65));
+		panelFormulario.add(btnIngresarProfe);
 		
 		EstiloBoton btnModificarProfe = new EstiloBoton("Modificar");
 		btnModificarProfe.addActionListener(new ActionListener() {
@@ -127,56 +171,24 @@ public class Profesores extends JDialog {
 			}
 		});
 		btnModificarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/modificateicon.png")));
-		btnModificarProfe.setBounds(10, 381, 232, 61);
-		contentPanel.add(btnModificarProfe);
+		btnModificarProfe.setPreferredSize(new Dimension(120, 65));
+		panelFormulario.add(btnModificarProfe);
 		
 		EstiloBoton btnEliminarProfe = new EstiloBoton("Eliminar");
 		btnEliminarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/eliminateicon.png")));
-		btnEliminarProfe.setBounds(10, 456, 232, 61);
-		contentPanel.add(btnEliminarProfe);
+		btnEliminarProfe.setPreferredSize(new Dimension(120, 65));
+		panelFormulario.add(btnEliminarProfe);
 		
 		txtBuscarProfe = new JTextField();
-		txtBuscarProfe.setBounds(417, 62, 554, 36);
-		contentPanel.add(txtBuscarProfe);
+		panelBusqueda.add(txtBuscarProfe, BorderLayout.CENTER);
 		txtBuscarProfe.setColumns(10);
 		
 		EstiloBoton btnBuscarProfe = new EstiloBoton("Buscar");
 		btnBuscarProfe.setIcon(new ImageIcon(Profesores.class.getResource("/iconos/searchcaticon.png")));
-		btnBuscarProfe.setBounds(268, 51, 125, 47);
-		contentPanel.add(btnBuscarProfe);
-		
-		JLabel lblNewLabel = new JLabel("Nombre :");
-		lblNewLabel.setBounds(10, 10, 44, 12);
-		contentPanel.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Apellidos : ");
-		lblNewLabel_1.setBounds(10, 53, 77, 12);
-		contentPanel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Correo :");
-		lblNewLabel_2.setBounds(10, 93, 44, 12);
-		contentPanel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Contraseña :");
-		lblNewLabel_3.setBounds(10, 132, 77, 12);
-		contentPanel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Grados");
-		lblNewLabel_4.setBounds(10, 202, 44, 12);
-		contentPanel.add(lblNewLabel_4);
-		
-		txtUsuarioProfe = new JTextField();
-		txtUsuarioProfe.setColumns(10);
-		txtUsuarioProfe.setBounds(10, 185, 232, 18);
-		contentPanel.add(txtUsuarioProfe);
-		
-		JLabel lblNewLabel_3_1 = new JLabel("Usuario :");
-		lblNewLabel_3_1.setBounds(10, 171, 77, 12);
-		contentPanel.add(lblNewLabel_3_1);
+		panelBusqueda.add(btnBuscarProfe, BorderLayout.WEST);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(268, 119, 700, 373);
-		contentPanel.add(scrollPane);
+		panelDerecho.add(scrollPane);
 		
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");

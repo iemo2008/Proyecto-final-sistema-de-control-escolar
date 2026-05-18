@@ -2,7 +2,8 @@ package proyecto_final;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
+import java.awt.GridLayout;
+import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ import javax.swing.ImageIcon;
 public class Asistencias extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel = new JPanel(new BorderLayout());
 	private JTextField txtProfesor;
 	private JTextField txtMateria;
 	private JTextField txtBuscar;
@@ -42,13 +43,38 @@ public class Asistencias extends JDialog {
 		setTitle("Asistencias");
 		setBounds(100, 100, 726, 583);
 		getContentPane().setLayout(new BorderLayout());
+		setLocationRelativeTo(null);
+			
+
+		contentPanel.setPreferredSize(new Dimension(926, 880));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		
+		JPanel pnl_sup = new JPanel(new GridLayout(2, 4, -50, 15));
+		JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panel.add(pnl_sup);
+		contentPanel.add(panel, BorderLayout.NORTH);
+		
+		
+		JPanel pnl_opc = new JPanel(new GridLayout(1, 2, 20, 0));
+		contentPanel.add(pnl_opc, BorderLayout.CENTER);
+
+		JPanel pnl_izquierdo = new JPanel(new BorderLayout(15,10));
+		pnl_opc.add(pnl_izquierdo);
+	
+		JPanel panelDerecho = new JPanel(new GridLayout(4, 1, 0, 25));
+		pnl_opc.add(panelDerecho);
+
+		JPanel panelBusqueda = new JPanel(new GridLayout(1, 2, -30, 15));
+		pnl_izquierdo.add(panelBusqueda, BorderLayout.NORTH);
+
+		
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(contentPanel);
+		getContentPane().add(scroll, BorderLayout.CENTER);
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 143, 496, 376);
-		contentPanel.add(scrollPane);
+		pnl_izquierdo.add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Volver");
 		btnNewButton.setIcon(new ImageIcon(Asistencias.class.getResource("/iconos/restarticon.png")));
@@ -60,53 +86,43 @@ public class Asistencias extends JDialog {
 				Asistencias.this.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(543, 460, 159, 59);
-		contentPanel.add(btnNewButton);
+		
+		JPanel panel_1 = new JPanel();
+		panelDerecho.add(panel_1);
 		
 		JButton btnNewButton_1 = new JButton("Guardar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(543, 379, 159, 59);
-		contentPanel.add(btnNewButton_1);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 10, 496, 59);
-		contentPanel.add(panel);
-		panel.setLayout(null);
+		panelDerecho.add(btnNewButton_1);
+		panelDerecho.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Profesor");
-		lblNewLabel_1.setBounds(10, 5, 62, 13);
-		panel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Materia");
-		lblNewLabel_1_1.setBounds(10, 36, 62, 13);
-		panel.add(lblNewLabel_1_1);
+		pnl_sup.add(lblNewLabel_1);
 		
 		txtProfesor = new JTextField();
-		txtProfesor.setBounds(80, 2, 345, 18);
-		panel.add(txtProfesor);
+		pnl_sup.add(txtProfesor);
 		txtProfesor.setColumns(10);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Materia");
+		pnl_sup.add(lblNewLabel_1_1);
 		
 		txtMateria = new JTextField();
 		txtMateria.setColumns(10);
-		txtMateria.setBounds(80, 33, 345, 18);
-		panel.add(txtMateria);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(526, 148, 182, 100);
-		contentPanel.add(panel_1);
+		pnl_sup.add(txtMateria);
 		
 		txtBuscar = new JTextField();
-		txtBuscar.setBounds(145, 94, 371, 29);
-		contentPanel.add(txtBuscar);
+		panelBusqueda.add(txtBuscar, BorderLayout.NORTH);
 		txtBuscar.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnBuscar.setIcon(new ImageIcon(Asistencias.class.getResource("/iconos/searchcaticon.png")));
-		btnBuscar.setBounds(10, 83, 125, 50);
-		contentPanel.add(btnBuscar);
+		panelBusqueda.add(btnBuscar);
 	}
 }
 //

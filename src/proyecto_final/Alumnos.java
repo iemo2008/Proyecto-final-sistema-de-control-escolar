@@ -2,7 +2,8 @@ package proyecto_final;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -20,7 +21,7 @@ import javax.swing.ImageIcon;
 public class Alumnos extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel = new JPanel(new BorderLayout());
 	private JTextField txtNombreAlumno;
 	private JTextField txtApellidoAlumno;
 	private JTextField txtCorreoAlumno;
@@ -37,6 +38,7 @@ public class Alumnos extends JDialog {
 			Metodos.Personalizar_frame();
 			Alumnos dialog = new Alumnos();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,56 +52,96 @@ public class Alumnos extends JDialog {
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setTitle("Alumnos");
 		setBounds(100, 100, 1098, 586);
+		
+		
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		setLocationRelativeTo(null);
+		
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));		
+		contentPanel.setPreferredSize(new Dimension(1100,1080));
+
+		JPanel pnl_sup = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		contentPanel.add(pnl_sup, BorderLayout.NORTH);
+
+		JPanel pnl_opc = new JPanel(new GridLayout(1, 2, 20, 0));
+		contentPanel.add(pnl_opc, BorderLayout.CENTER);
+
+		JPanel pnl_izquierdo = new JPanel(new GridLayout(16, 1, 5, 10));
+		pnl_opc.add(pnl_izquierdo);
+	
+		JPanel panelDerecho = new JPanel(new BorderLayout(0, 10));
+		pnl_opc.add(panelDerecho);
+
+		JPanel panelBusqueda = new JPanel(new BorderLayout(5, 0));
+		panelDerecho.add(panelBusqueda, BorderLayout.NORTH);
+
+		
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(contentPanel);
+		getContentPane().add(scroll, BorderLayout.CENTER);
+		{
+			JLabel lblNewLabel = new JLabel("Nombre");
+			pnl_izquierdo.add(lblNewLabel);
+		}
+
 		{
 			txtNombreAlumno = new JTextField();
-			txtNombreAlumno.setBounds(10, 30, 220, 19);
-			contentPanel.add(txtNombreAlumno);
+			pnl_izquierdo.add(txtNombreAlumno);
 			txtNombreAlumno.setColumns(10);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Apellidos");
+			pnl_izquierdo.add(lblNewLabel);
 		}
 		{
 			txtApellidoAlumno = new JTextField();
 			txtApellidoAlumno.setColumns(10);
-			txtApellidoAlumno.setBounds(10, 73, 220, 19);
-			contentPanel.add(txtApellidoAlumno);
+			pnl_izquierdo.add(txtApellidoAlumno);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Correo");
+			pnl_izquierdo.add(lblNewLabel);
 		}
 		{
 			txtCorreoAlumno = new JTextField();
 			txtCorreoAlumno.setColumns(10);
-			txtCorreoAlumno.setBounds(10, 114, 220, 19);
-			contentPanel.add(txtCorreoAlumno);
+			pnl_izquierdo.add(txtCorreoAlumno);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Clave");
+			pnl_izquierdo.add(lblNewLabel);
 		}
 		{
 			txtClaveAlumno = new JTextField();
 			txtClaveAlumno.setColumns(10);
-			txtClaveAlumno.setBounds(10, 197, 220, 19);
-			contentPanel.add(txtClaveAlumno);
+			pnl_izquierdo.add(txtClaveAlumno);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Usuario");
+			pnl_izquierdo.add(lblNewLabel);
 		}
 		{
 			txtUsuarioAlumno = new JTextField();
 			txtUsuarioAlumno.setColumns(10);
-			txtUsuarioAlumno.setBounds(10, 156, 220, 19);
-			contentPanel.add(txtUsuarioAlumno);
+			pnl_izquierdo.add(txtUsuarioAlumno);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Grupo");
+			pnl_izquierdo.add(lblNewLabel);
 		}
 		{
 			JComboBox cmbGradoAlumno = new JComboBox();
-			cmbGradoAlumno.setBounds(10, 241, 220, 20);
-			contentPanel.add(cmbGradoAlumno);
+			pnl_izquierdo.add(cmbGradoAlumno);
 		}
 		{
 			txtBuscarAlumno = new JTextField();
 			txtBuscarAlumno.setColumns(10);
-			txtBuscarAlumno.setBounds(384, 72, 673, 37);
-			contentPanel.add(txtBuscarAlumno);
+			panelBusqueda.add(txtBuscarAlumno, BorderLayout.CENTER);
 		}
 		{
 			EstiloBoton btnIngresarAlumno = new EstiloBoton("Ingresar");
 			btnIngresarAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/impoticon.png")));
-			btnIngresarAlumno.setBounds(10, 334, 220, 52);
-			contentPanel.add(btnIngresarAlumno);
+			pnl_izquierdo.add(btnIngresarAlumno);
 		}
 		{
 			EstiloBoton btnModificarAlumno = new EstiloBoton("Modificar");
@@ -108,19 +150,16 @@ public class Alumnos extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnModificarAlumno.setBounds(10, 396, 220, 52);
-			contentPanel.add(btnModificarAlumno);
+			pnl_izquierdo.add(btnModificarAlumno);
 		}
 		{
 			EstiloBoton btnBuscarAlumno = new EstiloBoton("Buscar");
 			btnBuscarAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/searchcaticon.png")));
-			btnBuscarAlumno.setBounds(240, 64, 133, 52);
-			contentPanel.add(btnBuscarAlumno);
+			panelBusqueda.add(btnBuscarAlumno, BorderLayout.WEST);
 		}
 		{
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(240, 122, 817, 390);
-			contentPanel.add(scrollPane);
+			panelDerecho.add(scrollPane, BorderLayout.CENTER);
 			{
 				tablaAlumnos = new JTable();
 				scrollPane.setViewportView(tablaAlumnos);
@@ -137,44 +176,13 @@ public class Alumnos extends JDialog {
 					VentanaSeleccion.setVisible(true);
 				}
 			});
-			btnVolver.setBounds(922, 8, 135, 52);
-			contentPanel.add(btnVolver);
+			btnVolver.setPreferredSize(new Dimension(140,45));
+			pnl_sup.add(btnVolver);
 		}
 		{
 			EstiloBoton btnEliminarAlumno = new EstiloBoton("Eliminar");
 			btnEliminarAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/eliminateicon.png")));
-			btnEliminarAlumno.setBounds(10, 461, 220, 51);
-			contentPanel.add(btnEliminarAlumno);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("Nombre");
-			lblNewLabel.setBounds(10, 13, 44, 12);
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("Apellidos");
-			lblNewLabel.setBounds(10, 61, 44, 12);
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("Correo");
-			lblNewLabel.setBounds(10, 100, 44, 12);
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("Usuario");
-			lblNewLabel.setBounds(10, 143, 44, 12);
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("Clave");
-			lblNewLabel.setBounds(10, 185, 44, 12);
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("Grupo");
-			lblNewLabel.setBounds(10, 226, 44, 12);
-			contentPanel.add(lblNewLabel);
+			pnl_izquierdo.add(btnEliminarAlumno);
 		}
 		
 		EstiloBoton btnCalificacionesAlumno = new EstiloBoton("Revisar Calificaciones");
@@ -187,8 +195,6 @@ public class Alumnos extends JDialog {
 			}
 		});
 		btnCalificacionesAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/iconstudent.png")));
-		btnCalificacionesAlumno.setBounds(10, 272, 220, 52);
-		contentPanel.add(btnCalificacionesAlumno);
+		pnl_izquierdo.add(btnCalificacionesAlumno);
 	}
 }
-//

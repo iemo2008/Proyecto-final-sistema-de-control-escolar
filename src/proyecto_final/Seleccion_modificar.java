@@ -2,10 +2,12 @@ package proyecto_final;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
@@ -16,11 +18,12 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
+import java.awt.Dimension;
 
 public class Seleccion_modificar extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel = new JPanel(new BorderLayout());
 
 	/**
 	 * Launch the application.
@@ -45,9 +48,20 @@ public class Seleccion_modificar extends JDialog {
 		setTitle("Tipo de usuario a administrar");
 		setBounds(100, 100, 655, 389);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		contentPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		setLocationRelativeTo(null);
+		contentPanel.setPreferredSize(new Dimension(490, 330));
+
+		JPanel panelContenido = new JPanel(new GridLayout(3, 2, 20, 15)); 
+		contentPanel.add(panelContenido, BorderLayout.CENTER);
+		
+		
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(contentPanel);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		setContentPane(scroll);
+		
+		
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("Administradores");
 			btnNewButton.addActionListener(new ActionListener() {
@@ -60,8 +74,7 @@ public class Seleccion_modificar extends JDialog {
 			});
 			btnNewButton.setIcon(new ImageIcon(Seleccion_modificar.class.getResource("/iconos/iconadmin.png")));
 			btnNewButton.setBackground(new Color(5,25,45));
-			btnNewButton.setBounds(23, 36, 162, 105);
-			contentPanel.add(btnNewButton);
+			panelContenido.add(btnNewButton);
 		}
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("Profesores");
@@ -75,8 +88,7 @@ public class Seleccion_modificar extends JDialog {
 			});
 			btnNewButton.setIcon(new ImageIcon(Seleccion_modificar.class.getResource("/iconos/iconteacher.png")));
 			btnNewButton.setBackground(new Color(5,25,45));
-			btnNewButton.setBounds(232, 36, 162, 105);
-			contentPanel.add(btnNewButton);
+			panelContenido.add(btnNewButton);
 		}
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("Alumnos");
@@ -90,8 +102,7 @@ public class Seleccion_modificar extends JDialog {
 			});
 			btnNewButton.setIcon(new ImageIcon(Seleccion_modificar.class.getResource("/iconos/iconstudent.png")));
 			btnNewButton.setBackground(new Color(5,25,45));
-			btnNewButton.setBounds(435, 36, 162, 105);
-			contentPanel.add(btnNewButton);
+			panelContenido.add(btnNewButton);
 		}
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("Materias");
@@ -105,8 +116,7 @@ public class Seleccion_modificar extends JDialog {
 			});
 			btnNewButton.setIcon(new ImageIcon(Seleccion_modificar.class.getResource("/iconos/classeicon.png")));
 			btnNewButton.setBackground(new Color(5,25,45));
-			btnNewButton.setBounds(23, 184, 162, 105);
-			contentPanel.add(btnNewButton);
+			panelContenido.add(btnNewButton);
 		}
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("Grados");
@@ -120,8 +130,7 @@ public class Seleccion_modificar extends JDialog {
 			});
 			btnNewButton.setIcon(new ImageIcon(Seleccion_modificar.class.getResource("/iconos/gradesicon.png")));
 			btnNewButton.setBackground(new Color(5,25,45));
-			btnNewButton.setBounds(232, 184, 162, 105);
-			contentPanel.add(btnNewButton);
+			panelContenido.add(btnNewButton);
 		}
 		{
 			EstiloBoton btnNewButton = new EstiloBoton("Volver");
@@ -135,8 +144,10 @@ public class Seleccion_modificar extends JDialog {
 			});
 			btnNewButton.setIcon(new ImageIcon(Seleccion_modificar.class.getResource("/iconos/restarticon.png")));
 			btnNewButton.setBackground(new Color(5,25,45));
-			btnNewButton.setBounds(435, 213, 162, 76);
-			contentPanel.add(btnNewButton);
+			panelContenido.add(btnNewButton);
+			
+			revalidate();
+			repaint();
 		}
 	}
 
