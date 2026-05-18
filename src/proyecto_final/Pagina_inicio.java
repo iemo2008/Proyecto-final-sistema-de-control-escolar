@@ -18,6 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.formdev.flatlaf.FlatDarkLaf;
 
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+
 public class Pagina_inicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
