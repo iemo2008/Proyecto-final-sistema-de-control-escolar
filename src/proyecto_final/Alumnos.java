@@ -28,6 +28,7 @@ public class Alumnos extends JDialog {
 	private JTextField txtUsuarioAlumno;
 	private JTextField txtBuscarAlumno;
 	private JTable tablaAlumnos;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -49,7 +50,7 @@ public class Alumnos extends JDialog {
 	public Alumnos() {
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setTitle("Alumnos");
-		setBounds(100, 100, 1098, 586);
+		setBounds(100, 100, 1098, 611);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -98,7 +99,7 @@ public class Alumnos extends JDialog {
 		{
 			EstiloBoton btnIngresarAlumno = new EstiloBoton("Ingresar");
 			btnIngresarAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/impoticon.png")));
-			btnIngresarAlumno.setBounds(10, 334, 220, 52);
+			btnIngresarAlumno.setBounds(10, 389, 220, 52);
 			contentPanel.add(btnIngresarAlumno);
 		}
 		{
@@ -108,7 +109,7 @@ public class Alumnos extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnModificarAlumno.setBounds(10, 396, 220, 52);
+			btnModificarAlumno.setBounds(10, 451, 220, 52);
 			contentPanel.add(btnModificarAlumno);
 		}
 		{
@@ -143,7 +144,7 @@ public class Alumnos extends JDialog {
 		{
 			EstiloBoton btnEliminarAlumno = new EstiloBoton("Eliminar");
 			btnEliminarAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/eliminateicon.png")));
-			btnEliminarAlumno.setBounds(10, 461, 220, 51);
+			btnEliminarAlumno.setBounds(10, 513, 220, 51);
 			contentPanel.add(btnEliminarAlumno);
 		}
 		{
@@ -187,8 +188,15 @@ public class Alumnos extends JDialog {
 			}
 		});
 		btnCalificacionesAlumno.setIcon(new ImageIcon(Alumnos.class.getResource("/iconos/iconstudent.png")));
-		btnCalificacionesAlumno.setBounds(10, 272, 220, 52);
+		btnCalificacionesAlumno.setBounds(10, 327, 220, 52);
 		contentPanel.add(btnCalificacionesAlumno);
+		{
+			textField = new JTextField();
+			textField.setColumns(10);
+			textField.setBounds(10, 283, 220, 19);
+			contentPanel.add(textField);
+		}
+		
 	}
 }
 //
